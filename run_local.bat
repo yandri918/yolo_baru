@@ -1,0 +1,6 @@
+@echo off
+echo Activating virtual environment...
+call gemini_venv\Scripts\activate.bat
+
+echo Starting Flask application...
+python app.py
