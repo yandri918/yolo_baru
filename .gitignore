@@ -1,0 +1,4 @@
+venv/
+gemini_venv/
+static/
+__pycache__/
