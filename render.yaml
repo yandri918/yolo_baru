@@ -7,4 +7,4 @@ services:
     startCommand: "gunicorn --log-level debug --bind 0.0.0.0:$PORT --timeout 120 app:app"
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.6
+        value: 3.12
