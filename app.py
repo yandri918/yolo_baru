@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 import logging
 
 # Inisialisasi aplikasi Flask
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 # Konfigurasi path
 UPLOAD_FOLDER = 'static/uploads/'
