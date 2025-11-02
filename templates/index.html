@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deteksi Objek dengan YOLOv8</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; text-align: center; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        .container { display: flex; justify-content: space-around; margin-top: 30px; flex-wrap: wrap; }
+        .upload-section { border: 2px dashed #ccc; padding: 20px; margin: 10px; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        img { max-width: 100%; height: auto; max-height: 400px; }
+        form { margin-bottom: 30px; }
+        input[type="file"], input[type="text"] { border: 1px solid #ddd; padding: 10px; border-radius: 5px; }
+        input[type="submit"], button { background-color: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        input[type="submit"]:hover, button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 Deteksi Objek dengan YOLOv8</h1>
+    <p>Aplikasi ini menggunakan model `yolov8n.pt` untuk mendeteksi objek dalam gambar dan video.</p>
+    
+    <div class="container">
+        <div class="upload-section">
+            <h2>Deteksi Gambar</h2>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".png, .jpg, .jpeg" required>
+                <input type="submit" value="Deteksi Objek">
+            </form>
+            {% if original_image and labels %}
+            <div class="image-box">
+                <h2>Gambar Asli</h2>
+                <img src="{{ url_for('static', filename=original_image.split('static/')[1]) }}" alt="Gambar Asli">
+            </div>
+            <div class="image-box">
+                <h2>Hasil Deteksi (Label)</h2>
+                <ul>
+                    {% for label in labels %}
+                        <li>{{ label }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="upload-section">
+            <h2>Deteksi Video</h2>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".mp4, .avi, .mov" required>
+                <input type="submit" value="Deteksi Objek">
+            </form>
+        </div>
+
+        <div class="upload-section">
+            <h2>Deteksi CCTV</h2>
+            <form action="/cctv" method="post">
+                <input type="text" name="cctv_url" placeholder="Masukkan URL CCTV" required>
+                <input type="submit" value="Mulai Deteksi">
+            </form>
+        </div>
+
+        <div class="upload-section">
+            <h2>Deteksi Kamera Lokal</h2>
+            <form action="/local_camera" method="get">
+                <button type="submit">Mulai Kamera</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
